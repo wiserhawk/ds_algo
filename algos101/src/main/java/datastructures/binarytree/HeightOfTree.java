@@ -16,6 +16,9 @@ public class HeightOfTree {
 	private Node rootNode;
 	private int maxLevel = 0;
 	
+	/*
+	 * Compute the max height of a tree.
+	 */
 	private void getTreeHeight(Node node, int level) {
 		if (node == null) return;
 		
@@ -33,6 +36,25 @@ public class HeightOfTree {
 		return maxLevel;
 	}
 	
+	/*
+	 * Other way to Compute the "maxDepth" of a tree -- the number of nodes along the longest
+	 * path from the root node down to the farthest leaf node.
+	 */
+	int maxDepth(Node node) {
+		if (node == null)
+			return 0;
+		
+		/* compute the depth of each subtree */
+		int lDepth = maxDepth(node.leftChild);
+		int rDepth = maxDepth(node.rightChild);
+
+		/* use the larger one */
+		if (lDepth > rDepth)
+			return (lDepth + 1);
+		else
+			return (rDepth + 1);
+	}
+	
 	
 	
 	public static void main(String[] args) {
@@ -44,10 +66,12 @@ public class HeightOfTree {
 		tree.rootNode.leftChild.rightChild = tree.new Node(6);
 		tree.rootNode.rightChild.leftChild = tree.new Node(5);
 		tree.rootNode.rightChild.rightChild = tree.new Node(4);
-		tree.rootNode.rightChild.rightChild.leftChild = tree.new Node(8);
+		tree.rootNode.rightChild.rightChild.rightChild = tree.new Node(8);
 
 		int height = tree.treeHeight(tree.rootNode);
+		int depth = tree.maxDepth(tree.rootNode);
 		System.out.println("Height Of Tree Is = " + height);
+		System.out.println("Depth Of Tree Is = " + height);
 	}
 
 }
