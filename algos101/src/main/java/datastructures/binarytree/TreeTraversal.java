@@ -24,7 +24,9 @@ public class TreeTraversal {
 		if (node.left != null) {
 			inorderTraversal(node.left);
 		} 
+		
 		System.out.print(" " + node.data);
+		
 		if (node.right != null) {
 			inorderTraversal(node.right);
 		}
@@ -36,9 +38,11 @@ public class TreeTraversal {
 			return;
 		
 		System.out.print(" " + node.data);
+		
 		if (node.left != null) {
 			preorderTraversal(node.left);
 		}
+		
 		if (node.right != null) {
 			preorderTraversal(node.right);
 		}
@@ -52,9 +56,11 @@ public class TreeTraversal {
 		if (node.left != null) {
 			postorderTraversal(node.left);
 		}
+		
 		if (node.right != null) {
 			postorderTraversal(node.right);
 		}
+		
 		System.out.print(" " + node.data);
 	}
 	
