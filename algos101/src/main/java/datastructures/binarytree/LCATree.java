@@ -1,5 +1,8 @@
 package datastructures.binarytree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 // Get Lowest Common Ancestor for given two numbers in Tree.
 public class LCATree {
 	
@@ -28,7 +31,9 @@ public class LCATree {
 	}
 	
 	// Returns LCA number from tree for given two numbers.
-	public int getLCA(int first, int second) {
+	// Using Iteration
+	// OPTIMIZED SOLUTION
+	public int getLcaUsingIteration(int first, int second) {
 		if (root == null)
 			return 0;
 		Node fstNode, secNode;
@@ -43,6 +48,48 @@ public class LCATree {
 		
 	}
 	
+	
+	// Returns LCA number from tree for given two numbers.
+	// Using Queues
+	public int getLcaUsingQueue(int first, int second) {
+		if (root == null)
+			return 0;
+		
+		Queue<Node> leftQueue = new LinkedList<>();
+		Queue<Node> rightQueue = new LinkedList<>();
+		Node leftNode, rightNode;
+		leftNode = rightNode = root;
+		while (true) {
+			leftNode = nextNode(leftNode, first);
+			rightNode = nextNode(rightNode, second);
+			leftQueue.add(leftNode);
+			rightQueue.add(rightNode);
+			// Terminate loop if left or right node are null or 
+			// same node which are given to find LCA.
+			if (leftNode == null || rightNode == null || 
+					leftNode.data == first || rightNode.data == second) {
+				break;
+			}
+		}
+		
+		Node lcaNode = root;
+		leftNode = rightNode = null;
+		while (true) {
+			leftNode = leftQueue.poll();
+			rightNode = rightQueue.poll();
+			if ( leftNode == null || rightNode == null ) {
+				break;
+			}
+			if ( leftNode == rightNode ) {
+				lcaNode = leftNode;
+				continue;
+			}
+			
+		}
+		
+		return (lcaNode != null) ? lcaNode.data : 0;
+	}
+	
 	public static void main(String[] args) {
 		LCATree tree = new LCATree();
 		
@@ -53,8 +100,13 @@ public class LCATree {
 		tree.root.left.right = new Node(6);
 		tree.root.right.left = new Node(11);
 		
-		int lca = tree.getLCA(6, 2);
-		System.out.println("Lowest Common Ancester = " + lca);
+		// Get LCA using iteration; OPTIMIZED SOLUTION
+		int lca = tree.getLcaUsingIteration(2, 6);
+		System.out.println("Lowest Common Ancester Using Iteration = " + lca);
+		
+		// Get LCA using Queue;
+		lca = tree.getLcaUsingQueue(2, 6);
+		System.out.println("Lowest Common Ancester Using Queue = " + lca);
 		
 	}
 	
