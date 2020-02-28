@@ -33,6 +33,8 @@ public class NQueensProblem {
         } 
     } 
     
+    private boolean place
+    
     public int[][] solveNQueenProblem(int n) {
     	int[][] borad = new int[n][n];
     	
