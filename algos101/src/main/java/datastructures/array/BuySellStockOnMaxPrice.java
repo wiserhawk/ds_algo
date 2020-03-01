@@ -53,9 +53,28 @@ public class BuySellStockOnMaxPrice {
 		}
 		Interval interval = intervals.get(maxProfitIndex);
 		System.out.println("Best day for buy is " + interval.buyDay + " and for sell is " + interval.sellDay);
-		System.out
-				.println("Max Profile is " + interval.sellPrice + " - " + interval.buyPrice + " = " + interval.profit);
+		System.out.println("Max Profile is " + interval.sellPrice + " - " + interval.buyPrice + " = " + interval.profit);
 		return maxProfit;
+	}
+	
+	public int maximumProfit(int[] prices) {
+		int buyPrice = 0;
+		int sellPrice = 0;
+		int maxProfit = 0;
+		for (int i = 0; i < prices.length; i++) {
+			if (prices[i] < buyPrice) {
+				buyPrice  = prices[i];
+				sellPrice = prices[i];
+				
+			}
+			
+			if (prices[i] > sellPrice) {
+				sellPrice = prices[i];
+			}
+		}
+		
+		//Sreturn sellPrice - buyPrice;
+		
 	}
 
 	public Interval createInterval(int buyDay, int buyPrice, int sellDay, int sellPrice) {
@@ -72,6 +91,9 @@ public class BuySellStockOnMaxPrice {
 		int[] prices = new int[] { 7, 1, 5, 3, 6, 4 };
 		BuySellStockOnMaxPrice stock = new BuySellStockOnMaxPrice();
 		int profit = stock.maxProfit(prices);
-		System.out.println("PROFIT = " + profit);
+		System.out.println("NON-OPTIMIZED PROFIT = " + profit);
+		
+		profit = stock.maximumProfit(prices);
+		System.out.println("OPTIMIZED SOLUTION PROFIT = " + profit);
 	}
 }

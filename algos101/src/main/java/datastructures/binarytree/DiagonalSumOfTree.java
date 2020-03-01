@@ -34,17 +34,18 @@ public class DiagonalSumOfTree {
 		
 		if (root == null) return null;
 		List<Integer> diagonalSum = new ArrayList<Integer>();
-		//int level = 0;
+		
 		Queue<Node> currentQueue = new LinkedList<Node>();
 		currentQueue.add(root);
+		
 		Queue<Node> nextQueue = new LinkedList<Node>();
 		
-		
+		Queue<Node> diagonalNodes = new LinkedList<Node>();
 		while (!currentQueue.isEmpty()) {
 			
-			Node currentNode = currentQueue.poll();
-			
-			while(currentNode != null ) { 
+			while(!currentQueue.isEmpty() ) { 
+				Node currentNode = currentQueue.poll();
+				diagonalNodes.add(currentNode);
 				Node rightNode = rightChild(currentNode);
 				Node leftNode = leftChild(currentNode);
 				if (rightNode != null) 
@@ -52,14 +53,15 @@ public class DiagonalSumOfTree {
 					
 				if (leftNode != null)
 					nextQueue.add(leftNode);
-				
-				currentNode = rightNode;
 			}
 			
-			diagonalSum.add(calcSum(currentQueue));
+			diagonalSum.add(calcSum(diagonalNodes));
+			Queue<Node> temp = currentQueue;
 			currentQueue = nextQueue;
+			nextQueue = temp;
 			nextQueue.clear();
 		}
+		
 		return diagonalSum;
 	}
 	
