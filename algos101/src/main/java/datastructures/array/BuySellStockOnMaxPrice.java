@@ -29,7 +29,7 @@ public class BuySellStockOnMaxPrice {
 		int profit;
 	}
 
-	// Get Maximum profit out of given prices.
+	// Get Maximum profit out of given prices. Non-Optimized Solution O(n^2)
 	public int maxProfit(int[] prices) {
 		List<Interval> intervals = new ArrayList<Interval>();
 
@@ -57,24 +57,24 @@ public class BuySellStockOnMaxPrice {
 		return maxProfit;
 	}
 	
+	// Get Maximum profit out of given prices. Optimized Solution O(n)
 	public int maximumProfit(int[] prices) {
-		int buyPrice = 0;
-		int sellPrice = 0;
+		int buyPrice = prices[0];
+		int sellPrice = prices[0];
 		int maxProfit = 0;
 		for (int i = 0; i < prices.length; i++) {
+			
 			if (prices[i] < buyPrice) {
-				buyPrice  = prices[i];
-				sellPrice = prices[i];
-				
+				buyPrice = prices[i];
+			} else if (prices[i] > buyPrice) {
+				if (prices[i] - buyPrice > maxProfit) {
+					maxProfit = prices[i] - buyPrice;
+					sellPrice =  prices[i];
+				}
 			}
 			
-			if (prices[i] > sellPrice) {
-				sellPrice = prices[i];
-			}
 		}
-		
-		//Sreturn sellPrice - buyPrice;
-		
+		return maxProfit;
 	}
 
 	public Interval createInterval(int buyDay, int buyPrice, int sellDay, int sellPrice) {
@@ -88,7 +88,8 @@ public class BuySellStockOnMaxPrice {
 	}
 
 	public static void main(String[] args) {
-		int[] prices = new int[] { 7, 1, 5, 3, 6, 4 };
+		//int[] prices = new int[] { 7, 1, 5, 3, 6, 4 };
+		int[] prices = new int[] {4, 2, 10, 1, 5, 3, 6};
 		BuySellStockOnMaxPrice stock = new BuySellStockOnMaxPrice();
 		int profit = stock.maxProfit(prices);
 		System.out.println("NON-OPTIMIZED PROFIT = " + profit);
