@@ -19,12 +19,13 @@ public class IslandsInMatrix {
 		//Islands count
 		int count = 0;
 		
-		int[][] visited = new int[rows][cols];
+		boolean[][] visited = new boolean[rows][cols];
 		
 		for (int row = 0; row < rows; row++) {
 			for (int col = 0; col < cols; col++) {
-				if (visited[row][col] != 1) {
-					islandMap.put(count++, island(row, col, matrix, visited));
+				if (visited[row][col] == false && matrix[row][col] == 1) {
+					List<AdjecentElement> adjecents = islandDFS(row, col, matrix, visited, new ArrayList<AdjecentElement>());
+					islandMap.put(++count, adjecents);
 				}
 			}
 		}
@@ -35,88 +36,99 @@ public class IslandsInMatrix {
 		
 	}
 	
-	private List<AdjecentElement> island(int row, int col, int[][] matrix, int[][] visited) {
+	private List<AdjecentElement> islandDFS(int row, int col, int[][] matrix, boolean[][] visited, List<AdjecentElement> adjecents) {
 		int rows = matrix.length;
 		int cols = matrix[0].length;
-		List<AdjecentElement> adjecents = new ArrayList<AdjecentElement>();
+		
+		visited[row][col] = true;
+		adjecents.add(new AdjecentElement(row, col));
+	
 		// Check Top Element
-		if (row-1 >= 0) {
-			if (visited[row-1][col] != 1) {
+		if (row-1 > -1) {
+			if (visited[row-1][col] == false) {
 				if (matrix[row-1][col] == 1) {
-					adjecents.add(new AdjecentElement(row-1, col));
-					// Mark Visited
-					visited[row-1][col] = 1;
+					islandDFS(row-1, col, matrix, visited, adjecents);
+					//adjecents.add(new AdjecentElement(row-1, col));
 				}
+				// Mark Visited
+				visited[row-1][col] = true;
 			}
 			// Top left 
-			if (col-1 >= 0) {
-				if (visited[row-1][col-1] != 1) {
+			if (col-1 > -1) {
+				if (visited[row-1][col-1] == false) {
 					if (matrix[row-1][col-1] == 1) {
-						adjecents.add(new AdjecentElement(row-1, col-1));
-						// Mark Visited
-						visited[row-1][col-1] = 1;
+						islandDFS(row-1, col-1, matrix, visited, adjecents);
+						//adjecents.add(new AdjecentElement(row-1, col-1));
 					}
+					// Mark Visited
+					visited[row-1][col-1] = true;
 				}
 			}
 			// Top Right
-			if (col+1 <= 0) {
-				if (visited[row-1][col+1] != 1) {
+			if (col+1 < cols) {
+				if (visited[row-1][col+1] == false) {
 					if (matrix[row-1][col+1] == 1) {
-						adjecents.add(new AdjecentElement(row-1, col+1));
-						// Mark Visited
-						visited[row-1][col+1] = 1;
+						islandDFS(row-1, col+1, matrix, visited, adjecents);
+						//adjecents.add(new AdjecentElement(row-1, col+1));
 					}
+					// Mark Visited
+					visited[row-1][col+1] = true;
 				}
 			}
 		}
 		// Check Bottom Element
-		if (row+1 <= rows-1) {
-			if (visited[row+1][col] != 1) {
+		if (row+1 < rows) {
+			if (visited[row+1][col] == false) {
 				if (matrix[row+1][col] == 1) {
-					adjecents.add(new AdjecentElement(row+1, col));
-					// Mark Visited
-					visited[row+1][col] = 1;
+					islandDFS(row+1, col, matrix, visited, adjecents);
+					//adjecents.add(new AdjecentElement(row+1, col));
 				}
+				// Mark Visited
+				visited[row+1][col] = true;
 			}
 			// Bottom left 
-			if (col-1 >= 0) {
-				if (visited[row+1][col-1] != 1) {
+			if (col-1 > -1) {
+				if (visited[row+1][col-1] == false) {
 					if (matrix[row+1][col-1] == 1) {
-						adjecents.add(new AdjecentElement(row+1, col-1));
-						// Mark Visited
-						visited[row+1][col-1] = 1;
+						islandDFS(row+1, col-1, matrix, visited, adjecents);
+						//adjecents.add(new AdjecentElement(row+1, col-1));
 					}
+					// Mark Visited
+					visited[row+1][col-1] = true;
 				}
 			}
 			// Bottom Right
-			if (col+1 <= 0) {
-				if (visited[row+1][col+1] != 1) {
+			if (col+1 < cols) {
+				if (visited[row+1][col+1] == false) {
 					if (matrix[row+1][col+1] == 1) {
-						adjecents.add(new AdjecentElement(row+1, col+1));
-						// Mark Visited
-						visited[row+1][col+1] = 1;
+						islandDFS(row+1, col+1, matrix, visited, adjecents);
+						//adjecents.add(new AdjecentElement(row+1, col+1));
 					}
+					// Mark Visited
+					visited[row+1][col+1] = true;
 				}
 			}
 		}
 		// Check Left Element
-		if (col-1 >= 0) {
-			if (visited[row][col-1] != 1) {
+		if (col-1 > -1) {
+			if (visited[row][col-1] == false) {
 				if (matrix[row][col-1] == 1) {
-					adjecents.add(new AdjecentElement(row, col-1));
-					// Mark Visited
-					visited[row][col-1] = 1;
+					islandDFS(row, col-1, matrix, visited, adjecents);
+					//adjecents.add(new AdjecentElement(row, col-1));
 				}
+				// Mark Visited
+				visited[row][col-1] = true;
 			}
 		}
 		// Check Right Element
-		if (col+1 <= cols-1) {
-			if (visited[row][col+1] != 1) {
-				if (matrix[row][col+1] == 1) {
-					adjecents.add(new AdjecentElement(row, col+1));
-					// Mark Visited
-					visited[row][col+1] = 1;
+		if (col+1 < cols) {
+			if (visited[row][col+1] == false) {
+				if (matrix[row][col+1] == 1) {					
+					islandDFS(row, col+1, matrix, visited, adjecents);
+					//adjecents.add(new AdjecentElement(row, col+1));
 				}
+				// Mark Visited
+				visited[row][col+1] = true;
 			}
 		}
 		return adjecents;
@@ -174,7 +186,7 @@ public class IslandsInMatrix {
 		visited[row][col] = true;
 		
 		// Check Top Element
-		if (row-1 >= 0) {
+		if (row-1 > -1) {
 			if (visited[row-1][col] == false) {
 				if (matrix[row-1][col] == 1) {
 					dfs(row-1, col, matrix, visited);
@@ -183,7 +195,7 @@ public class IslandsInMatrix {
 				visited[row-1][col] = true;
 			}
 			// Top left 
-			if (col-1 >= 0) {
+			if (col-1 > -1) {
 				if (visited[row-1][col-1] == false) {
 					if (matrix[row-1][col-1] == 1) {
 						dfs(row-1, col-1, matrix, visited);
@@ -193,7 +205,7 @@ public class IslandsInMatrix {
 				}
 			}
 			// Top Right
-			if (col+1 <= cols-1) {
+			if (col+1 < cols) {
 				if (visited[row-1][col+1] == false) {
 					if (matrix[row-1][col+1] == 1) {
 						dfs(row-1, col+1, matrix, visited);
@@ -204,7 +216,7 @@ public class IslandsInMatrix {
 			}
 		}
 		// Check Bottom Element
-		if (row+1 <= rows-1) {
+		if (row+1 < rows) {
 			if (visited[row+1][col] == false) {
 				if (matrix[row+1][col] == 1) {
 					dfs(row+1, col, matrix, visited);
@@ -213,7 +225,7 @@ public class IslandsInMatrix {
 				visited[row+1][col] = true;
 			}
 			// Bottom left 
-			if (col-1 >= 0) {
+			if (col-1 > -1) {
 				if (visited[row+1][col-1] == false) {
 					if (matrix[row+1][col-1] == 1) {
 						dfs(row+1, col-1, matrix, visited);
@@ -223,7 +235,7 @@ public class IslandsInMatrix {
 				}
 			}
 			// Bottom Right
-			if (col+1 <= cols-1) {
+			if (col+1 < cols) {
 				if (visited[row+1][col+1] == false) {
 					if (matrix[row+1][col+1] == 1) {
 						dfs(row+1, col+1, matrix, visited);
@@ -234,7 +246,7 @@ public class IslandsInMatrix {
 			}
 		}
 		// Check Left Element
-		if (col-1 >= 0) {
+		if (col-1 > -1) {
 			if (visited[row][col-1] == false) {
 				if (matrix[row][col-1] == 1) {
 					dfs(row, col-1, matrix, visited);
@@ -244,7 +256,7 @@ public class IslandsInMatrix {
 			}
 		}
 		// Check Right Element
-		if (col+1 <= cols-1) {
+		if (col+1 < cols) {
 			if (visited[row][col+1] == false) {
 				if (matrix[row][col+1] == 1) {
 					dfs(row, col+1, matrix, visited);
@@ -256,10 +268,6 @@ public class IslandsInMatrix {
 	}
 	
 	
-	
-	
-	
-
 	public static void main(String[] args) {
 		int[][] matrix = new int[][] {{ 1, 1, 0, 0, 0 }, 
 						              { 0, 1, 0, 0, 1 }, 
@@ -267,7 +275,11 @@ public class IslandsInMatrix {
 						              { 0, 0, 0, 0, 0 }, 
 						              { 1, 0, 1, 0, 1 }}; 
         IslandsInMatrix instance = new IslandsInMatrix();
-       int count =  instance.findIslands(matrix);
+        instance.numberOfIslands(matrix);
+        
+        System.out.println("=======================================================");
+        
+        int count =  instance.findIslands(matrix);
        System.out.println("Number of Islands Found =  " + count);
 	}
 

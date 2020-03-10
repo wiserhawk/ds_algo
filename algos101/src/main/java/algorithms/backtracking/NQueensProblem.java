@@ -33,12 +33,28 @@ public class NQueensProblem {
         } 
     } 
     
-    private boolean place
+    private boolean isSafe(int row, int col, int[][] board) {
+    	int size = board.length;
+    	// Check columns are safe
+    	for (int c = 0; c < size; c++) {
+			if (board[row][c] == 1)
+				return false;
+		}
+    	// Check rows are safe
+    	for (int r = 0; r < size; r++) {
+			if (board[r][col] == 1)
+				return false;
+		}
+    	
+    	return true;
+    }
     
     public int[][] solveNQueenProblem(int n) {
     	int[][] borad = new int[n][n];
     	
     }
+    
+    
      
 
 	public static void main(String[] args) {
