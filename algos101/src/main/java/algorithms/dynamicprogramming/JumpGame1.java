@@ -1,5 +1,7 @@
 package algorithms.dynamicprogramming;
 
+import java.util.Arrays;
+
 /**
  * 
 Given an array of non-negative integers, you are initially positioned at the first index of the array.
@@ -21,15 +23,50 @@ Input: [3,2,1,0,4]
 Output: false
 Explanation: You will always arrive at index 3 no matter what. Its maximum
              jump length is 0, which makes it impossible to reach the last index.
+             
+ ===============================================================================
+ 
+ HINT: Recursion & Dynamic Programming 
 
  *
  */
 
 public class JumpGame1 {
 	
-	public boolean canJump(int[] nums) {
-        
+	// -1 = default/unused, 0 = false, 1 = true
+	int[] memoization = null;
+	
+	public boolean canJump(int[] jumps) {
+		int size = jumps.length;
+		if (size == 1) return true;
+		memoization = new int[size];
+		Arrays.fill(memoization, -1);
+		return jump(0, size-1, jumps);
     }
+	
+	// This is recursive function
+	private boolean jump(int index, int lastIndex, int[] jumps) {
+		if (memoization[index] == 0 ) 
+			return false;
+		else if (memoization[index] == 1)
+			return true;
+		
+		if (index == lastIndex) {
+			memoization[index] = 1;
+			return true;
+		}
+		
+		boolean reached = false;
+		int steps = jumps[index];
+		for (int step = steps; step > 0; step--) {
+			if (index+step <= lastIndex) {
+				reached = jump(index+step, lastIndex, jumps);
+				memoization[index+step] = (reached == true) ? 1 : 0;
+			}
+		}
+		
+		return reached;
+	}
 	
 	public static void main(String[] args) {
 
