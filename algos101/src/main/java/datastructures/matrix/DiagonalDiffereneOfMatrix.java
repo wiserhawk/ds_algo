@@ -1,8 +1,5 @@
 package datastructures.matrix;
 
-import java.math.BigDecimal;
-import java.util.List;
-
 /*
  * Given a square matrix, calculate the absolute difference between the sums of its diagonals.
 
