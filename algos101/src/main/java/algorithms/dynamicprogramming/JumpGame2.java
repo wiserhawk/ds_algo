@@ -77,7 +77,7 @@ public class JumpGame2 {
 		//========================================================================
 		int[] array1 = new int[] {2,4,1,1,3,2,1,2,1,4};
 		minJumps = jumpGame.minJumps(array1);
-		 EXPECTED = 4
+		//EXPECTED = 4
 		System.out.println("Minimum jumpes I need to reach end are " + minJumps);
 		
 		
