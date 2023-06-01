@@ -1,4 +1,4 @@
-package datastructures.binarytree;
+package datastructures.trees;
 
 /**
  * Basic Binary Tree operations like Add , Delete and Search.

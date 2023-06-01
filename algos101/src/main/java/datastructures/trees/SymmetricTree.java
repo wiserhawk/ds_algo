@@ -1,4 +1,4 @@
-package datastructures.binarytree;
+package datastructures.trees;
 
 
 /**

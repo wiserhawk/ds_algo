@@ -1,4 +1,4 @@
-package datastructures.binarytree;
+package datastructures.trees;
 
 //Java program to print left view of binary tree
 

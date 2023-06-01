@@ -1,4 +1,4 @@
-package datastructures.binarytree;
+package datastructures.trees;
 
 /**
  * Check whether tree is Binary Search Tree or not.
@@ -45,6 +45,9 @@ public class CheckBST {
         else 
             return false;
 	}
+	
+	
+	
 
 	public static void main(String[] args) {
 
