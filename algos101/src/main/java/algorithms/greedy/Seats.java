@@ -53,46 +53,70 @@ HINT: Middle point of all Xs will be minimum number of jumps. So the median of a
 
 
 public class Seats {
-	
-	public static int seats(String A) {
-		
-		List<Integer> positions = new ArrayList<>();
-		for (int i = 0; i < A.length(); i++) {
+
+	public static int moveSeats(String A) {
+		List<Integer> currentPositions = new ArrayList<>();
+		for (int i=0; i < A.length(); i++) {
 			if (A.charAt(i) == 'x')
-				positions.add(i);
-		} 
-		
-		int count = 0;
-		int middle = median(positions);
-		char[] arr = A.toCharArray();
-		int lx = middle-1, ldot = middle, rx = middle+1, r = middle;
-		
-		while (lx > 0) {
-			if (arr[ldot] == '.' && arr[lx] == 'x') {
-				count = count + ldot - lx;
-				char temp = arr[ldot];
-				arr[ldot] = arr[lx];
-				arr[lx] = temp;
-			}
-			if (arr[ldot] != '.' )
-				ldot--;
-			lx--;
+				currentPositions.add(i);
 		}
-		
-		
-//		while(lx > 0 || rx < arr.length) {
-//			if (arr[l] == '.' && arr[lx] == 'x') {
-//				count = count + l - lx;
-//				char temp = arr[l];
-//				arr[l] = arr[lx];
-//				arr[lx] = temp;
-//				l--;
-//			}
-//			lx--;
-//				
-//		}
-		
-		
+
+		int median = median(currentPositions);
+		System.out.println("Median = " + median);
+		char[] seats = A.toCharArray();
+		return moveLeftSeats(seats, median) + moveRightSeats(seats, median);
+	}
+
+	private static int moveRightSeats(char[] seats, int median) {
+		int count = 0;
+		int dot = median;
+		int x = median;
+		while (dot < seats.length) {
+			if (dot >= seats.length) break;
+			if (x >= seats.length) break;
+			if (seats[dot] == '.') {
+				if (seats[x] == 'x') {
+					count += swap(seats, dot, x);
+					dot++;
+					x++;
+				} else {
+					x++;
+				}
+			} else {
+				dot++;
+				x=dot+1;
+			}
+		}
+		return count;
+	}
+
+	private static int moveLeftSeats(char[] seats, int median) {
+		int count = 0;
+		int dot = median;
+		int x = median;
+		while (dot > -1) {
+			if (dot <= -1) break;
+			if (x <= -1) break;
+			if (seats[dot] == '.') {
+				if (seats[x] == 'x') {
+					count += swap(seats, dot, x);
+					dot--;
+					x--;
+				} else {
+					x--;
+				}
+			} else {
+				dot--;
+				x=dot-1;
+			}
+		}
+		return count;
+	}
+
+	private static int swap(char[] seats, int dot, int x) {
+		seats[dot] = 'x';
+		seats[x] = '.';
+		return Math.abs(dot-x);
 	}
 	
 	
@@ -101,12 +125,19 @@ public class Seats {
 		if (size%2 == 1) {
 			return positions.get(size/2);
 		} else {
-			return (positions.get(size-1/2) + positions.get(size/2)) / 2;
+			return (positions.get((size-1)/2) + positions.get(size/2)) / 2;
 		}
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		String A = "....x..xx...x..";
+		int movements = moveSeats(A);
+		System.out.println("Number of movements: " + movements);
+
+		String A1 = "....xxx";
+		int movements1 = moveSeats(A1);
+		System.out.println("Number of movements: " + movements1);
+
 
 	}
 
