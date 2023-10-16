@@ -1,5 +1,7 @@
 package algorithms.greedy;
 
+import java.util.Arrays;
+
 /**
 There are N Mice and N holes are placed in a straight line. 
 Each hole can accommodate only 1 mouse. A mouse can stay at his position, 
@@ -36,12 +38,26 @@ Output : 102
 public class MiceHoles {
 	
 	public static int assignHole(int[] mice, int[] holes) {
-		
+    if (mice.length != holes.length)
+      return -1;
+    Arrays.sort(mice);
+    Arrays.sort(holes);
+
+    int maxTime = 0;
+    for (int i = 0; i < mice.length; i++) {
+      int time = Math.absExact(mice[i] - holes[i]);
+      maxTime = time > maxTime ? time: maxTime;
+    }
+    return maxTime;
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		int[] mice = new int[] {-10, -79, -79, 67, 93, -85, -28, -94 };
+    int[] holes = new int[] {-2, 9, 69, 25, -31, 23, 50, 78 };
 
+    int minTime = assignHole(mice, holes);
+
+    System.out.println("Minimum Time Taken = " + minTime);
 	}
 
 }
