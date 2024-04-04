@@ -1,5 +1,7 @@
 package algorithms.greedy;
 
+import java.time.LocalDate;
+
 /**
  * 
 Majority Element (Complexity: Easy)
@@ -42,7 +44,10 @@ public class MajorityElement {
     }
 	
 	public static void main(String[] args) {
-		
+
+		LocalDate a = LocalDate.of(2012, 7, 30);
+		LocalDate b = LocalDate.of(2012, 6, 30);
+		System.out.println(a.isAfter(b)); 
 
 	}
 
