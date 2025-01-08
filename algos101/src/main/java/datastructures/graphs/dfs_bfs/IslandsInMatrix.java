@@ -1,4 +1,4 @@
-package datastructures.matrix;
+package datastructures.graphs.dfs_bfs;
 
 import java.util.ArrayList;
 import java.util.HashMap;

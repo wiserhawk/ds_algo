@@ -1,4 +1,4 @@
-package datastructures.graphs;
+package datastructures.graphs.dfs_bfs;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -98,11 +98,11 @@ public class RottenOranges {
     public static void main(String[] args) {
        int[][] grid = new int[][] {{2,1,1},{1,1,0},{0,1,1}};
        int minutes = orangesRotting(grid);
-       System.out.println("Minutes = " + minutes);
+       System.out.println("Example-1: Minutes Taken = " + minutes);
 
        int[][] grid1 = new int[][] {{2,1,1},{0,1,1},{1,0,1}};
        int minutes1 = orangesRotting(grid1);
-       System.out.println("Minutes1 = " + minutes1);
+       System.out.println("Example-2: Minutes Taken = " + minutes1);
     }
 
 
