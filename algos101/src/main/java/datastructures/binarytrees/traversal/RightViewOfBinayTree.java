@@ -1,4 +1,4 @@
-package datastructures.trees;
+package datastructures.binarytrees.traversal;
 
 //Java program to print right view of binary tree
 

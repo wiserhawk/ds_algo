@@ -1,4 +1,4 @@
-package datastructures.trees;
+package datastructures.binarytrees.traversal;
 
 /**
  * Check whether tree is Binary Search Tree or not.

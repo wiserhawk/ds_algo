@@ -1,4 +1,4 @@
-package datastructures.trees;
+package datastructures.binarytrees.traversal;
 
 /**
  * Program to print Diameter of Binary Tree. The diameter of a tree (sometimes

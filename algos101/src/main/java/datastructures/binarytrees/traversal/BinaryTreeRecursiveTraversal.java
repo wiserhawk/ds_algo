@@ -1,9 +1,15 @@
-package datastructures.trees;
+package datastructures.binarytrees.traversal;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BinaryTreeTraversal {
+/**
+ * Traverse Binary tree using Recursive approach.
+ *  1. Pre Order Traversal
+ *  2. In Order Traversal
+ *  3. Post Order Traversal
+ */
+public class BinaryTreeRecursiveTraversal {
 
     public static class Node {
         int data;
@@ -70,7 +76,9 @@ public class BinaryTreeTraversal {
         root.right = new Node(3);
         root.left.left = new Node(4);
         root.left.right = new Node(5);
-
+        root.right.left = new Node(6);        
+        root.right.right = new Node(7);
+        
         System.out.println("Pre Order = " + preOrderTraversal(root));
         System.out.println("In Order = " + inOrderTraversal(root));
         System.out.println("Post Order = " + postOrderTraveral(root));

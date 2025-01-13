@@ -1,4 +1,4 @@
-package datastructures.trees;
+package datastructures.binarytrees.traversal;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

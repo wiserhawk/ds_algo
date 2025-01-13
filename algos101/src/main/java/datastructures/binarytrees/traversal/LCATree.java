@@ -1,4 +1,4 @@
-package datastructures.trees;
+package datastructures.binarytrees.traversal;
 
 import java.util.LinkedList;
 import java.util.Queue;

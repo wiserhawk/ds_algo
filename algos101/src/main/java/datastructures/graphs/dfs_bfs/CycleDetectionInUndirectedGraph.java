@@ -13,7 +13,7 @@ import java.util.Queue;
  * NOTE: The adjacency list represents undirected edges, meaning that if there is an edge between vertex i and vertex j, both j will be adj[i] and i will be in adj[j].
  */
 
-public class CycleDetection {
+public class CycleDetectionInUndirectedGraph {
 
     public static boolean hasCycleUsingDFS(List<List<Integer>> edges) {
         int n = edges.size();

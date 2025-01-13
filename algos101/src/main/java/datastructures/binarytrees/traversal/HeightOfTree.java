@@ -1,4 +1,4 @@
-package datastructures.trees;
+package datastructures.binarytrees.traversal;
 
 // Java program to get height of binary tree
 public class HeightOfTree {

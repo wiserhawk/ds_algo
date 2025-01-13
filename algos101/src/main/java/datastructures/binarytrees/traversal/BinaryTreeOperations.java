@@ -1,4 +1,4 @@
-package datastructures.trees;
+package datastructures.binarytrees.traversal;
 
 /**
  * Basic Binary Tree operations like Add , Delete and Search.
