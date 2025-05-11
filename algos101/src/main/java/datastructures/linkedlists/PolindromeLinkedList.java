@@ -1,8 +1,8 @@
-package datastructures.linkedlist;
+package datastructures.linkedlists;
 
 import java.util.Stack;
 
-import datastructures.linkedlist.LinkedListOps.Node;
+import datastructures.linkedlists.LinkedListOparations.Node;
 
 public class PolindromeLinkedList {
 	

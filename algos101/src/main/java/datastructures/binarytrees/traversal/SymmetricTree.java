@@ -13,6 +13,8 @@ package datastructures.binarytrees.traversal;
 	 / \   / \
 	3   4 4   3
  *
+ * 
+ *  https://takeuforward.org/data-structure/check-for-symmetrical-binary-tree/
  */
 public class SymmetricTree {
 	

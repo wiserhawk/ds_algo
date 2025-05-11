@@ -1,10 +1,10 @@
-package datastructures.binarytrees.traversal;
+package datastructures.binarysearchtrees;
 
 /**
  * Check whether tree is Binary Search Tree or not.
  *
  */
-public class CheckBST {
+public class CheckBinarySearchTree {
 	
 	static class Node {
 		int data;
@@ -51,7 +51,7 @@ public class CheckBST {
 
 	public static void main(String[] args) {
 
-		CheckBST tree = new CheckBST();
+		CheckBinarySearchTree tree = new CheckBinarySearchTree();
 		tree.root = new Node(7);
 		tree.root.left = new Node(4);
 		tree.root.right = new Node(14);

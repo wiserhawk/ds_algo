@@ -67,7 +67,7 @@ public class WordLadder_2 {
         }
         @Override
         public String toString() {
-            return "[word=" + first + ", level=" + second + "]";
+            return "[word=" + word + ", level=" + sequence + "]";
         }
     }
 

@@ -1,10 +1,12 @@
-package datastructures.binarytrees.traversal;
+package datastructures.binarysearchtrees;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
-// Get Lowest Common Ancestor for given two numbers in Tree.
-public class LCATree {
+// Get Lowest Common Ancestor for given two numbers in Binary Search Tree.
+// Explaination: https://www.youtube.com/watch?v=cX_kPV_foZc
+
+public class LCABinarySearchTree {
 	
 	static class Node {
 		int data;
@@ -91,7 +93,7 @@ public class LCATree {
 	}
 	
 	public static void main(String[] args) {
-		LCATree tree = new LCATree();
+		LCABinarySearchTree tree = new LCABinarySearchTree();
 		
 		tree.root = new Node(7);
 		tree.root.left = new Node(4);

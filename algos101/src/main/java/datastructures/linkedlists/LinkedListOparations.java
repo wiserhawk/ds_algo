@@ -1,6 +1,6 @@
-package datastructures.linkedlist;
+package datastructures.linkedlists;
 
-public class LinkedListOps {
+public class LinkedListOparations {
 	
 	public static class Node {
 		int data;
@@ -93,7 +93,7 @@ public class LinkedListOps {
 	}
 	
 	public static void main(String[] args) {
-		LinkedListOps list = new LinkedListOps();
+		LinkedListOparations list = new LinkedListOparations();
 		list.insert(1);
 		list.insert(2);
 		list.insert(3);

@@ -28,28 +28,41 @@ public class TryCode {
 	
 	
 	public static void main(String[] args) {
-		BigDecimal totalMarketValue = new BigDecimal(107670072.62);
-		BigDecimal percentage = new BigDecimal(10.0000); 
+		// BigDecimal totalMarketValue = new BigDecimal(107670072.62);
+		// BigDecimal percentage = new BigDecimal(10.0000); 
 		
-		Set<BigDecimal> allCashflowTransactions = new HashSet<>();
-		allCashflowTransactions.add(new BigDecimal(-70000000));
-		allCashflowTransactions.add(new BigDecimal(-42000000));
-		allCashflowTransactions.add(new BigDecimal(50000000));
-		allCashflowTransactions.add(new BigDecimal(-17149.21));
-		allCashflowTransactions.add(new BigDecimal(-55000000));
-		allCashflowTransactions.add(new BigDecimal(-20480.75));
-		allCashflowTransactions.add(new BigDecimal(-57699.34));
-		allCashflowTransactions.add(new BigDecimal(-14066.68));
+		// Set<BigDecimal> allCashflowTransactions = new HashSet<>();
+		// allCashflowTransactions.add(new BigDecimal(-70000000));
+		// allCashflowTransactions.add(new BigDecimal(-42000000));
+		// allCashflowTransactions.add(new BigDecimal(50000000));
+		// allCashflowTransactions.add(new BigDecimal(-17149.21));
+		// allCashflowTransactions.add(new BigDecimal(-55000000));
+		// allCashflowTransactions.add(new BigDecimal(-20480.75));
+		// allCashflowTransactions.add(new BigDecimal(-57699.34));
+		// allCashflowTransactions.add(new BigDecimal(-14066.68));
 		
-		TryCode tryCode = new TryCode();
-		Set<BigDecimal> finalTransactions = tryCode.getFinalTransactions(allCashflowTransactions, totalMarketValue, percentage);
+		// TryCode tryCode = new TryCode();
+		// Set<BigDecimal> finalTransactions = tryCode.getFinalTransactions(allCashflowTransactions, totalMarketValue, percentage);
 		
-		System.out.println("======FINAL TRANSACTIONS======");
-		for(BigDecimal txt : finalTransactions) {
-			System.out.println(txt.toString());
-		}
+		// System.out.println("======FINAL TRANSACTIONS======");
+		// for(BigDecimal txt : finalTransactions) {
+		// 	System.out.println(txt.toString());
+		// }
+
+		BigDecimal asset1 = new BigDecimal(994950.81);
+		BigDecimal asset2 = new BigDecimal(5942727.65);
+		List<BigDecimal> assets = new ArrayList<>();
+		assets.add(asset1);
+		assets.add(asset2);
+		System.out.println("Assets = " + assets.stream().reduce(BigDecimal.ZERO, BigDecimal::add));
+
+		//BigDecimal assets = new BigDecimal(5942727.65499999999999999999999999979631845350000000);
+		//System.out.println("Assets = " + assets);
 		
-		testit();
+		//testit();
+
+		System.out.println("What is the value = " + (1 == 1));
+		System.out.println("What is the value = " + (128==128));
 		
 	}
 	

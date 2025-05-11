@@ -6,6 +6,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+
+// https://www.geeksforgeeks.org/diagonal-sum-binary-tree/
+
 public class DiagonalSumOfTree {
 
 	public static class Node {
@@ -19,58 +22,35 @@ public class DiagonalSumOfTree {
 	}
 	
 	Node root;
-	
-	public Node rightChild(Node node) {
-		if (node == null) return node;
-		return node.right;
-	}
-	
-	public Node leftChild(Node node) {
-		if (node == null) return node;
-		return node.left;
-	}
-	
-	public List<Integer> diagonalSum(Node root) {
-		
-		if (root == null) return null;
-		List<Integer> diagonalSum = new ArrayList<Integer>();
-		
-		Queue<Node> currentQueue = new LinkedList<Node>();
-		currentQueue.add(root);
-		
-		Queue<Node> nextQueue = new LinkedList<Node>();
-		
-		Queue<Node> diagonalNodes = new LinkedList<Node>();
-		while (!currentQueue.isEmpty()) {
-			
-			while(!currentQueue.isEmpty() ) { 
-				Node currentNode = currentQueue.poll();
-				diagonalNodes.add(currentNode);
-				Node rightNode = rightChild(currentNode);
-				Node leftNode = leftChild(currentNode);
-				if (rightNode != null) 
-					currentQueue.add(rightNode);
-					
-				if (leftNode != null)
-					nextQueue.add(leftNode);
-			}
-			
-			diagonalSum.add(calcSum(diagonalNodes));
-			Queue<Node> temp = currentQueue;
-			currentQueue = nextQueue;
-			nextQueue = temp;
-			nextQueue.clear();
-		}
-		
-		return diagonalSum;
-	}
-	
-	private int calcSum(Queue<Node> queue) {
+
+
+	public static List<Integer> diagonalSum(Node root) {
+		List<Integer> diagonalSum = new ArrayList<>();
+
+		Queue<Node> queue = new LinkedList<>();
+		queue.add(root);
+		List<Node> nextDiagonal = new ArrayList<>();
 		int sum = 0;
-		while(!queue.isEmpty()) {
-			sum += queue.poll().data;
+		
+		while (!queue.isEmpty()) {
+			Node curr = queue.poll();
+			sum += curr.data;
+
+			if (curr.right != null)
+				queue.add(curr.right);
+
+			if (curr.left != null) {
+				nextDiagonal.add(curr.left);
+			}
+
+			if (queue.isEmpty()) {
+				diagonalSum.add(sum);
+				sum = 0;
+				queue.addAll(nextDiagonal);
+				nextDiagonal.clear();
+			}
 		}
-		return sum;
+		return diagonalSum;
 	}
 	
 	
@@ -88,9 +68,8 @@ public class DiagonalSumOfTree {
 		tree.root.right.left.right = new Node(7); 
 		tree.root.left.right.left = new Node(11); 
 		tree.root.left.left.right = new Node(10); 
-        
-        List<Integer> diagonalSum = tree.diagonalSum(tree.root);
-        System.out.println("Diagonal Sum = " + diagonalSum);
+
+		System.out.println("Diagonal Sum = " + diagonalSum(tree.root));
 
 	}
 

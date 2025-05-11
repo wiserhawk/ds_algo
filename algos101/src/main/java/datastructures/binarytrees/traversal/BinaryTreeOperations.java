@@ -41,6 +41,8 @@ public class BinaryTreeOperations {
 				else
 					parent.right = node;
 			}
+		} else {
+			root = node;
 		}
 	}
 	
